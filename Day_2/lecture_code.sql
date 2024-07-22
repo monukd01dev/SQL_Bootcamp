@@ -48,7 +48,8 @@ CREATE TABLE learners(
     YearsOfExperience INT NOT NULL,
     LearnerCompany VARCHAR(50),
     LearnerSOJ VARCHAR(50) NOT NULL,
-    BatchDate TIMESTAMP NOT NULL,
+    BatchStartDate TIMESTAMP NOT NULL,
+    Location VARCHAR(50) NOT NULL,
     PRIMARY KEY (LearnerID),
     UNIQUE KEY(LearnerEmail),
     FOREIGN KEY (SelectedCourse) REFERENCES courses(CourseID)
@@ -59,14 +60,37 @@ DESC learners;
 -- inserting records into learners table
 -- Insert queries for learners table with the specified constraints
 
-INSERT INTO learners (LearnerFirstName, LearnerLastName, LearnerEmail, LearnerPhoneNumber, LearnerEnrollmentDate, SelectedCourse, YearsOfExperience, LearnerCompany, LearnerSOJ, BatchDate)
+INSERT INTO learners (LearnerFirstName, LearnerLastName, LearnerEmail, LearnerPhoneNumber, LearnerEnrollmentDate, SelectedCourse, YearsOfExperience, LearnerCompany, LearnerSOJ, BatchStartDate, Location)
 VALUES
-('Amit', 'Sharma', 'amit.sharma@example.com', '9876543210', '2024-02-28', 1, 3, 'TechMahindra', 'Linkedin', '2024-08-01'),
-('Rajesh', 'Verma', 'rajesh.verma@example.com', '9876543211', '2024-01-15', 2, 5, 'Infosys', 'Youtube', '2024-08-02'),
-('Sita', 'Patel', 'sita.patel@example.com', '9876543212', '2024-03-24', 3, 2, 'TCS', 'Instagram', '2024-08-03'),
-('Vikas', 'Kumar', 'vikas.kumar@example.com', '9876543213', '2024-02-15', 1, 4, 'Wipro', 'Linkedin', '2024-08-04'),
-('Anita', 'Desai', 'anita.desai@example.com', '9876543214', '2024-01-14', 2, 1, 'HCL', 'Youtube', '2024-08-05'),
-('Ravi', 'Singh', 'ravi.singh@example.com', '9876543215', '2024-03-23', 3, 6, 'Cognizant', 'Instagram', '2024-08-06');
+-- Learners for courseID 1 (enrollment before 2024-02-29)
+('Arun', 'Venkatesh', 'arun.venkatesh@example.com', '9123456780', '2024-01-05', 1, 8, 'Reliance', 'Linkedin', '2024-08-01', 'Mumbai'),
+('Pallavi', 'Rao', 'pallavi.rao@example.com', '9123456783', '2024-01-22', 1, 5, 'Google', 'Youtube', '2024-08-04', 'Bangalore'),
+('Sonal', 'Mehta', 'sonal.mehta@example.com', '9123456785', '2024-02-28', 1, 1, 'Adobe', 'Instagram', '2024-08-06', 'Delhi'),
+('Vikram', 'Patil', 'vikram.patil@example.com', '9123456786', '2024-01-15', 1, 9, 'Accenture', 'Linkedin', '2024-08-07', 'Hyderabad'),
+('Sneha', 'Khan', 'sneha.khan@example.com', '9123456789', '2024-01-28', 1, 5, 'Infosys', 'Instagram', '2024-08-10', 'Chennai'),
+('Ajay', 'Reddy', 'ajay.reddy@example.com', '9123456792', '2024-01-19', 1, 2, 'TechMahindra', 'Youtube', '2024-08-13', 'Pune'),
+('Radha', 'Mishra', 'radha.mishra@example.com', '9123456795', '2024-01-23', 1, 8, 'Adobe', 'Linkedin', '2024-08-16', 'Kolkata'),
+
+-- Learners for courseID 2 (enrollment before 2024-01-16)
+('Meera', 'Nair', 'meera.nair@example.com', '9123456781', '2024-01-05', 2, 2, 'Flipkart', 'Linkedin', '2024-08-02', 'Mumbai'),
+('Karthik', 'Ghosh', 'karthik.ghosh@example.com', '9123456784', '2024-01-11', 2, 7, 'Microsoft', 'Youtube', '2024-08-05', 'Bangalore'),
+('Neha', 'Kapoor', 'neha.kapoor@example.com', '9123456787', '2024-01-08', 2, 3, 'Wipro', 'Instagram', '2024-08-08', 'Delhi'),
+('Aman', 'Singh', 'aman.singh@example.com', '9123456790', '2024-01-13', 2, 4, 'HCL', 'Youtube', '2024-08-11', 'Hyderabad'),
+('Geeta', 'Jain', 'geeta.jain@example.com', '9123456793', '2024-01-02', 2, 9, 'Google', 'Linkedin', '2024-08-14', 'Chennai'),
+('Rohit', 'Bhat', 'rohit.bhat@example.com', '9123456796', '2024-01-05', 2, 5, 'Accenture', 'Youtube', '2024-08-17', 'Pune'),
+
+-- Learners for courseID 3 (enrollment before 2024-03-25)
+('Sunil', 'Desai', 'sunil.desai@example.com', '9123456782', '2024-02-12', 3, 4, 'Amazon', 'Linkedin', '2024-08-03', 'Kolkata'),
+('Ravi', 'Sharma', 'ravi.sharma@example.com', '9123456788', '2024-02-20', 3, 6, 'TCS', 'Youtube', '2024-08-09', 'Mumbai'),
+('Priya', 'Iyer', 'priya.iyer@example.com', '9123456791', '2024-02-25', 3, 7, 'Cognizant', 'Instagram', '2024-08-12', 'Bangalore'),
+('Manoj', 'Joshi', 'manoj.joshi@example.com', '9123456794', '2024-02-10', 3, 4, 'Microsoft', 'Linkedin', '2024-08-15', 'Delhi'),
+('Lata', 'Kumar', 'lata.kumar@example.com', '9123456797', '2024-02-17', 3, 3, 'Cognizant', 'Instagram', '2024-08-18', 'Hyderabad'),
+('Sumit', 'Roy', 'sumit.roy@example.com', '9123456700', '2024-02-22', 3, 5, 'HCL', 'Linkedin', '2024-08-21', 'Chennai'),
+('Asha', 'Seth', 'asha.seth@example.com', '9123456703', '2024-02-08', 3, 1, 'Google', 'Youtube', '2024-08-24', 'Pune'),
+('Rajan', 'Chauhan', 'rajan.chauhan@example.com', '9123456706', '2024-02-14', 3, 3, 'Accenture', 'Instagram', '2024-08-27', 'Kolkata'),
+('Leela', 'Gandhi', 'leela.gandhi@example.com', '9123456709', '2024-02-18', 3, 5, 'Infosys', 'Linkedin', '2024-08-30', 'Mumbai');
+
+
 
 SELECT * FROM learners;
 
